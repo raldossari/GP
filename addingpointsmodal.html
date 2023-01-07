@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<style>
+  label:before {
+    content: "";
+    height: 31px;
+    position: absolute;
+    right: 7px;
+    top: 3px;
+    width: 22px;
+    border-bottom-right-radius: 2px;
+    pointer-events: none;
+    display: block;
+  }
+
+  label select {
+    padding: 0 8px 0 8px;
+    height: 25px;
+    margin: 0 8px 0 8px;
+    font-size: 12px;
+    color: #172b4d;
+  }
+
+  label {
+    color: #172b4d;
+    font-family: BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans, Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+  }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function () {
+
+    //get card info from db
+    //then get current list, I recoomend to get it from db and once the has been moved to another list
+    //I will update the card on my db
+    //here i will set the points section and the set point button
+    $("#submit").on('click', function () {
+      alert($("#modelname").find("option:selected").text() + ' clicked!');
+      //if the card is not in the done list and the changer is the reporter
+      //update network on response
+      setBoardLists()
+
+
+      $("#submit").val("Edit point");
+      $('#points').prop('disabled', true);
+      //else
+      $("#submit").attr("disabled", true);
+    });
+  });
+
+
+  function setBoardLists() {
+    var xhttp = new XMLHttpRequest();
+    var bodyParam = JSON.stringify({ modelType: 'board', idModel: '5a79cd38780ace6c920ba438', name: 'Design Studio', type: 'text', pos: 'top' })
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        alert(this.responseText);
+      }
+    };
+    console.log("test123333");
+
+    const data = { key: '778b9d7642733cfb0ebf236f01dbb60b', token: '24ed114f066afbd724b13545f887c02f1f1f438e63d86b9d5e5c4c05e83c563d' };
+    const searchParams = new URLSearchParams(data);
+    xhttp.open("POST", "https://api.trello.com/1/customFields", true);
+    xhttp.send(bodyParam);
+  }
+
+</script>
+
+<body>
+  <form class="custom-select" name="modelname" id="modelname">
+    <label for="lang">Task Points:&emsp;&emsp;</label>
+    <label>
+      <select id="points" name="points">
+        <option value="0">No points</option>
+        <option value="5">5 PTS</option>
+        <option value="10">10 PTS</option>
+        <option value="15">15 PTS</option>
+        <option value="20">20 PTS</option>
+      </select>
+    </label>
+    <br />
+    <input type="submit" id="submit" value="Set points" />
+  </form>
+</body>
+
+</html>
