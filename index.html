@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <script>
+
+    var GRAY_ICON = 'https://cdn.hyperdev.com/us-east-1%3A3d31b21c-01a0-4da2-8827-4bc6e88b7618%2Ficon-gray.svg';
+
+    TrelloPowerUp.initialize({
+
+      'card-buttons': function (t, options) {
+        var test1 = false;
+        return [
+          {
+            icon: "https://i.postimg.cc/3x06xK54/points.png",
+            text: "UX Score",
+            callback: function (t) {
+
+              return t.popup({
+                title: 'UX Score',
+                url: './section.html',
+                height: 550,
+              }
+                ///,
+                // // optional arguments to be passed to the iframe as query parameters
+                // // access later with t.arg('text')
+                // args: { text: 'Hello' },
+                // // optional color for header chrome
+                // accentColor: '#6d00f2',
+                // initial height for iframe
+                //height: 00, // not used if fullscreen is true
+              );
+            }
+          }
+        ]
+      },
+      'on-enable': function (t, options) {
+        // This code will get triggered when a user enables your Power-Up
+        var bboard = t.board('id').then(function (result) { console.log(`Hello from ${result.id}`); })
+
+        var promiseB = t.board('id').then(function (result) {
+          return result.id
+        });
+        return t.modal({
+          url: './unboarding.html',
+          height: 550,
+          title: 'LeanUX',
+          callback: function (t) {
+            getBoardLists();
+          }
+        });
+      },
+
+      'card-back-section': function (t, options) {
+        return {
+          title: 'UX Methods',
+          icon: GRAY_ICON, // Must be a gray icon, colored icons not allowed.
+          monochrome: false,
+          content: {
+            type: 'iframe',
+            url: t.signUrl('./uxMethodsSection.html'),
+            height: 120, // Max height is 1500.
+          }
+        };
+      },
+      'board-buttons': function (t, options) {
+        return [
+          {
+            icon: "https://i.ibb.co/JHmNhLq/leaderboard.png",
+            text: "Leaderboard",
+            monochrome: false,
+            callback: function (t) {
+              return t.modal({
+                // the url to load for the iframe
+                url: './leaderboard.html',
+                // optional arguments to be passed to the iframe as query parameters
+                // access later with t.arg('text')
+                args: { text: 'Hello' },
+                // optional color for header chrome
+                accentColor: '#6d00f2',
+                // initial height for iframe
+                height: 500, // not used if fullscreen is true
+                // whether the modal should stretch to take up the whole screen
+                fullscreen: true,
+                title: ''
+              })
+            }
+          },
+
+          {
+            icon: "https://i.ibb.co/Mgd7rHc/badge.png",
+            text: "Badges",
+            callback: function (t) {
+              return t.modal({
+                // the url to load for the iframe
+                url: './badges.html',
+                // optional arguments to be passed to the iframe as query parameters
+                // access later with t.arg('text')
+                args: { text: 'Hello' },
+                // optional color for header chrome
+                accentColor: '#6d00f2',
+                // initial height for iframe
+                height: 500, // not used if fullscreen is true
+                title: 'Badges'
+              })
+            }
+          }
+        ]
+      },
+      'card-badges': function (t, options) {
+        return [{
+          icon: 'https://cdn.glitch.com/c69415fd-f70e-4e03-b43b-98b8960cd616%2Frocket-ship-grey.png?1496162964717',
+          text: '6'
+        }];
+      }
+
+      // "card-badges": function (t, opts) {
+      //    let cardAttachments = opts.attachments; // Trello passes you the attachments on the card
+      //    return t
+      //      .card("name")
+      //      .get("name")
+      //      .then(function (cardName) {
+      //        console.log("We just loaded the card name for fun: " + cardName);
+      //        return [
+      //          {
+      //            // Dynamic badges can have their function rerun
+      //            // after a set number of seconds defined by refresh.
+      //            // Minimum of 10 seconds.
+      //            dynamic: function () {
+      //              // we could also return a Promise that resolves to
+      //              // this as well if we needed to do something async first
+      //              return {
+      //                text: "Dynamic " + (Math.random() * 100).toFixed(0).toString(),
+      //                icon: GRAY_ICON,
+      //                color: "green",
+      //                refresh: 10, // in seconds
+      //              };
+      //            },
+      //          },
+      //          {
+      //            // It's best to use static badges unless you need your
+      //            // badges to refresh.
+      //            // You can mix and match between static and dynamic
+      //            text: "Static",
+      //            icon: GRAY_ICON, // for card front badges only
+      //            color: null,
+      //          },
+      //        ];
+      //      });
+      //  },
+      //     'attachment-sections': function(t, options){
+      //   // options.entries is a list of the attachments for this card
+      //   // you can look through them and 'claim' any that you want to
+      //   // include in your section.
+
+      //   // we will just claim urls for Yellowstone
+      //   var claimed = options.entries.filter(function (attachment) {
+      //     return attachment.url.indexOf('http://www.google.com') === 0;
+      //   });
+
+      //   // you can have more than one attachment section on a card
+      //   // you can group items together into one section, have a section
+      //   // per attachment, or anything in between.
+      //   if (claimed && claimed.length > 0) {
+      //     // if the title for your section requires a network call or other
+      //     // potentially lengthy operation you can provide a function for the title
+      //     // that returns the section title. If you do so, provide a unique id for
+      //     // your section
+      //     return [{
+      //       id: 'Yellowstone', // optional if you aren't using a function for the title
+      //       claimed: claimed,
+      //       icon: GRAY_ICON, // Must be a gray icon, colored icons not allowed.
+      //       title: 'Example Attachment Section: Yellowstone',
+      //       content: {
+      //         type: 'iframe',
+      //         url: t.signUrl('./section.html', {
+      //           arg: 'you can pass your section args here'
+      //         }),
+      //         height: 230
+      //       }
+      //     }];
+      //   } else {
+      //     return [];
+      //   }
+      // }
+    })
+
+    function getBoardLists() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+          var listOfBoardLists = JSON.parse(this.responseText);
+          //generate lists/ if there is a list with as same name we will skip it
+          var newLists = ["backlog", "Todo"];
+          for (var i = 0; i < newLists.length; i++) {
+
+            //find item
+            const found = listOfBoardLists.find(element => element['name'] == newLists[i]);
+            if (typeof (found) == "undefined") {
+              console.log("found " + newLists[i]);
+              setBoardLists(newLists[i]);
+            }
+          }
+        }
+      };
+      console.log("test123");
+
+
+      const data = { key: '778b9d7642733cfb0ebf236f01dbb60b', token: '24ed114f066afbd724b13545f887c02f1f1f438e63d86b9d5e5c4c05e83c563d' };
+      const searchParams = new URLSearchParams(data);
+      xhttp.open("GET", "https://api.trello.com/1/boards/5a79cd38780ace6c920ba438/lists?" + searchParams, true);
+      xhttp.send(null);
+    }
+
+
+    function setBoardLists(newList) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          alert(this.responseText);
+        }
+      };
+      console.log("test123");
+
+      const data = { name: newList, idBoard: '5a79cd38780ace6c920ba438', key: '778b9d7642733cfb0ebf236f01dbb60b', token: '24ed114f066afbd724b13545f887c02f1f1f438e63d86b9d5e5c4c05e83c563d' };
+      const searchParams = new URLSearchParams(data);
+      xhttp.open("POST", "https://api.trello.com/1/lists?" + searchParams, true);
+      xhttp.send(null);
+    }
+
+  </script>
+</body>
+
+</html>
+
+
+<!-- close card
+Is it possible to close a card from a Power-Up? I haven’t seen it mentioned anywhere in the Power-Up documentation but it is possible to make a button created in Automation close the card
+
+If you are actually looking to open/close a card from the user’s point of view, both t.hideCard() might be what you’re looking for: Navigation 1 -->
+.......................
+
+<!-- show notiification -->
+<!-- t.alert({
+  message: 'Powered-Up Successfully 🎉',
+  duration: 6,
+  display: 'success'
+});
+
+.......................
+Remotely update card badges
+
+Card labels are supported in our API. You can POST/DELETE to the “card/:cardId/idLabels” endpoint to add or remove labels on a card. Make sure you have the id of the label handy.
+
+You can read more about it here: https://developer.atlassian.com/cloud/trello/rest/api-group-cards/#api-cards-id-idlabels-post
+
+
+ -->
+<!--  Trello.post("lists/" + idList + "/cards", { 
+        name: name, 
+        desc: desc
+      }, function(card){
+        // Display a little notification in the upper-left corner with a link to the card
+        // that was just created
+        var $cardLink = $("<a>")
+        .attr({
+          href: card.url,
+          target: "card"
+        })
+        .text("Created a Trello Card")
+        .css({
+          position: "absolute",
+          left: 0,
+          top: 0,
+          padding: "4px",
+          border: "1px solid #000",
+          background: "#fff",
+          "z-index": 1e3
+        })
+        .appendTo("body")
+
+        setTimeout(function(){
+          $cardLink.fadeOut(3000);
+        }, 5000)
+      }) -->
+<!-- alert(`Hello from ${card.name} (id: ${card.id})!`) -->

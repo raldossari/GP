@@ -1,0 +1,141 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://p.trellocdn.com/power-up.min.css">
+  <!-- <link rel="stylesheet" href="https://trello.com/power-ups-power-up.css"> -->
+  <style>
+    .block {
+      display: block;
+      width: 100%;
+      border: none;
+      background-color: #6EAA52;
+      color: white;
+      padding: 14px 28px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .block:hover {
+      background-color: #588842;
+      color: white;
+    }
+
+    .active {
+      background-color: #0079BF;
+      color: white;
+    }
+
+    .tablink {
+      /* background-color: #0079BF;
+      color: white; */
+    }
+
+    .radio-toolbar input[type="radio"] {
+      display: none;
+    }
+
+    .radio-toolbar label {
+      display: inline-block;
+      background-color: #ddd;
+      padding: 4px 11px;
+      font-family: Arial;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .radio-toolbar input[type="radio"]:checked+label {
+      background-color: #bbb;
+    }
+  </style>
+  <script src="https://p.trellocdn.com/power-up.min.js"></script>
+  <script src="./js/section.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    function showValueScore(count) {
+      document.getElementById("value").value = count;
+      // $('.tablink').click(function (e) {
+      //   $('.tablink').removeClass('active');
+      //   $(this).addClass('active');
+      // });
+    }
+    function showFamiliarityScore(count) {
+      document.getElementById("familiarity").value = count;
+    }
+    function showClarityScore(count) {
+      document.getElementById("clarity").value = count;
+    }
+    $(document).ready(function () {
+      $('.tablink').click(function () {
+        $("#value").attr("value") = $(this).attr("value")
+        $(this).toggleClass('active');
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div id="content">
+    <form>
+      <label for="value">Potential value:</label>
+      <input type="text" id="value" name="value" placeholder="select a score" disabled>
+      <div class="radio-toolbar">
+        <input type="radio" id="radio1" name="radios" value="1">
+        <label for="radio1">1</label>
+        <input type="radio" id="radio2" name="radios" value="2">
+        <label for="radio2">2</label>
+        <input type="radio" id="radio3" name="radios" value="3">
+        <label for="radio3">3</label>
+        <input type="radio" id="radio4" name="radios" value="4">
+        <label for="radio1">4</label>
+        <input type="radio" id="radio5" name="radios" value="5">
+        <label for="radio2">5</label>
+        <input type="radio" id="radio6" name="radios" value="6">
+        <label for="radio3">6</label>
+        <input type="radio" id="radio7" name="radios" value="7">
+        <label for="radio1">7</label>
+        <input type="radio" id="radio8" name="radios" value="8">
+        <label for="radio2">8</label>
+        <input type="radio" id="radio9" name="radios" value="9">
+        <label for="radio3">9</label>
+        <input type="radio" id="radio10" name="radios" value="10">
+        <label for="radio1">10</label>
+      </div>
+      <br>
+      <label for="familiarity">Familiarity :</label>
+      <input type="text" id="familiarity" name="familiarity" placeholder="select a score" disabled>
+      <div class="btn-group-familiarity">
+        <button onclick="showFamiliarityScore('1')">1</button>
+        <button onclick="showFamiliarityScore('2')">2</button>
+        <button onclick="showFamiliarityScore('3')">3</button>
+        <button onclick="showFamiliarityScore('4')">4</button>
+        <button onclick="showFamiliarityScore('5')">5</button>
+        <button onclick="showFamiliarityScore('6')">6</button>
+        <button onclick="showFamiliarityScore('7')">7</button>
+        <button onclick="showFamiliarityScore('8')">8</button>
+        <button onclick="showFamiliarityScore('9')">9</button>
+        <button onclick="showFamiliarityScore('10')">10</button>
+      </div><br>
+      <label for="clarity">Clarity :</label>
+      <input type="text" id="clarity" name="clarity" placeholder="select a score" disabled>
+      <div class="btn-group-clarity">
+        <button onclick="showClarityScore('1')">1</button>
+        <button onclick="showClarityScore('2')">2</button>
+        <button onclick="showClarityScore('3')">3</button>
+        <button onclick="showClarityScore('4')">4</button>
+        <button onclick="showClarityScore('5')">5</button>
+        <button onclick="showClarityScore('6')">6</button>
+        <button onclick="showClarityScore('7')">7</button>
+        <button onclick="showClarityScore('8')">8</button>
+        <button onclick="showClarityScore('9')">9</button>
+        <button onclick="showClarityScore('10')">10</button>
+      </div>
+      <br>
+      <button id="submit" class="block">
+        Done
+      </button>
+    </form>
+  </div>
+</body>
+
+</html>

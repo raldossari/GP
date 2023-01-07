@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<script src="https://p.trellocdn.com/power-up.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<style>
+  .container {
+    background-color: #F0F0F0;
+    font-family: Palatino, URW Palladio L, serif;
+    text-align: center;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 0 6px #808080;
+
+  }
+
+  th,
+  td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+  }
+
+  .img-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<body class="container">
+  <h1>LeanUX Leaderboard</h1>
+  <table id="tabell" />
+  <script>
+
+
+    // var xhttp = new XMLHttpRequest();
+    //   xhttp.onreadystatechange = function() {
+    //   if (this.readyState == 4 && this.status == 200) {
+    //       alert(this.responseText);
+    //        console.log(this.responseText);
+    //        var listOfMembers = JSON.parse(this.responseText);
+    //        console.log(listOfMembers.length);
+    //         console.log(listOfMembers[0]['memberType']);
+
+    const text = '{"teamMembers":{"teamMember":[{"trelloId":"I would like to:","userName":"test1","profileImage":"https://i.postimg.cc/VLsSRrMy/gamer.png","name":"1","level":"1","points":"70","start":"10","end":"100","badges":[{"id":"badge1","name":"badge1","icon":"https://i.postimg.cc/bDYf89p5/award.png"},{"id":"badge3","name":"badge1","icon":"https://i.postimg.cc/WF9L4q41/badge.png"},{"id":"badge3","name":"badge1","icon":"https://i.postimg.cc/Lq3FrbKf/police-badge.png"}]},{"trelloId":"I would like to:","userName":"test2","profileImage":"https://i.postimg.cc/VLsSRrMy/gamer.png","name":"1","level":"1","points":"70","start":"10","end":"100","badges":[{"id":"badge1","name":"badge1","icon":"https://i.postimg.cc/bDYf89p5/award.png"},{"id":"badge3","name":"badge1","icon":"https://i.postimg.cc/WF9L4q41/badge.png"},{"id":"badge3","name":"badge1","icon":"https://i.postimg.cc/Lq3FrbKf/police-badge.png"}]}]}}'
+    var listOfMembers = JSON.parse(text);
+    tabellOp(listOfMembers['teamMembers']['teamMember']);
+    //        ///todo: navigate to set table  myFunction(obj);
+    //     }
+    // };
+    //  console.log("test1236666");
+    //  const data = {key: '778b9d7642733cfb0ebf236f01dbb60b',token: '24ed114f066afbd724b13545f887c02f1f1f438e63d86b9d5e5c4c05e83c563d'};
+    //  const searchParams = new URLSearchParams(data);
+
+    //  xhttp.open("GET", "https://api.trello.com/1/boards/5a79cd38780ace6c920ba438/memberships?"+searchParams, true);
+    //  xhttp.send(null);
+
+    //SCORE
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   let elements = []
+    //   let container = document.querySelector('#container')
+    //   // Add each row to the array
+    //   container.querySelectorAll('.row').forEach(el => elements.push(el))
+    //   // Clear the container
+    //   container.innerHTML = ''
+    //   // Sort the array from highest to lowest
+    //   elements.sort((a, b) => b.querySelector('.score').textContent - a.querySelector('.score').textContent)
+    //   // Put the elements back into the container
+    //   elements.forEach(e => container.appendChild(e))
+    // })
+
+
+    function tabellOp(listOfMembers) {
+      var tabellget = document.querySelector("#tabell");
+
+      var row = "<th style='width:50px'>Rank</th> <th>Name</th>  <th>Colloected badges</th><th <th style='width:40%'>Score</th></tr>";
+
+      for (var i = 0; i < listOfMembers.length; i++) {
+        var currentPoints = listOfMembers[i]['points'];
+        var maxPoint = listOfMembers[i]['end'];
+        var startPoint = listOfMembers[i]['start'];
+        var badges = listOfMembers[i]['badges'];
+        var badge = listOfMembers[i]['badges'][0]['icon'];
+        var icons = ""
+
+        for (var j = 0; j < badges.length; j++) {
+          icons += "<img class='img' width='30' height='30' src='" + badges[j]['icon'] + "'>"
+        }
+
+        row += "<tr><td>" + (i + 1) + "</td>";
+        row += "<td>" + "<img class='img' width='30' height='30'  style='display: inline-block; vertical-align:middle;' src='" + listOfMembers[i]['profileImage'] + "'> " + listOfMembers[i]['userName'] + "</td>";
+        row += "<td>" + icons + "</td>";
+        row += "<td> <div class='progress-container'>" + currentPoints + " <progress id='progress' class='progress-container' value='" + (currentPoints - startPoint) + "' max='" + maxPoint + "'> 32 </progress> " + (maxPoint - currentPoints) + " points to the next level </div></td>";
+        row += "</tr>";
+
+      }
+
+      tabellget.innerHTML = row;
+    }
+  </script>
+</body>
+
+</html>
+
+
+<!-- function tabellOp() {
+  var measurement = [ [20,31,20,31], [23,39,23,39], [4,6,4,6] ];
+  var tree = ["furu", "gran", "lauvtre"];
+  var year = [1915,1950,1970,1990];
+  var tabellget = document.querySelector("#tabell");
+  var row = "<tr><th> NAME</th>";
+  tabellget.innerHTML = "test";
+
+  for (var i = 0; i < year.length; i++) {
+    row += "<th>" + year[i] + "</th>";
+  }
+  row += "</tr>";
+  
+  for (var i = 0; i < tree.length; i++) {
+    row += "<tr><th>" + tree[i] + "</th>";
+    for (var j = 0; j < measurement[i].length; j++) {
+      row += "<td>" + measurement[i][j] + "</td>";
+    }
+    row += "</tr>";
+  }
+  
+  tabellget.innerHTML = row;
+}
+tabellOp(); -->
+<!-- 
+  https://api.trello.com/1/boards/5a79cd38780ace6c920ba438/memberships
+[{"idMember":"5a79ccfb5cfda640d91d1380","memberType":"admin","unconfirmed":false,"deactivated":false,"id":"5a79cd38780ace6c920ba439"}] -->
+
+
+<!-- {
+  "teamMembers": {
+    "teamMember": [
+      {
+        "trelloId": "I would like to:",
+        "userName": "test1",
+        "profileImage": "https://i.postimg.cc/VLsSRrMy/gamer.png",
+        "name": "1",
+        "level": "1",
+        "points": "100",
+        "badges": [
+          {
+            "id": "badge1",
+            "name": "badge1",
+            "icon": "https://i.postimg.cc/VLsSRrMy/gamer.png"
+          },
+          {
+            "id": "badge3",
+            "name": "badge1",
+            "icon": "https://i.postimg.cc/VLsSRrMy/gamer.png"
+          }
+        ]
+      }
+    ]
+  }
+} -->
