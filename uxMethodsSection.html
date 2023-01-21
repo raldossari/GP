@@ -91,56 +91,23 @@
         const t = window.TrelloPowerUp.iframe();
         //fill list
         $(document).ready(function () {
+            //https://jazzy-sundae-89e3ee.netlify.app/jsonFile.json
             console.log("&&&&&&&");
             return t.getAll('card', 'shared')
                 .then(function (sharedData) {
                     var { card: { shared: { uxScore, uxMethod } } } = sharedData;
-                    $.getJSON("jsonFile.json", function (data) {
-                        var efforts = data.efforts.filter(function (el) {
-                            //todo: fix ID 
-                            return el.id == uxScore;
-                        });
 
-                        const selectedBundle = efforts[0]['bundle']
-                        const totalOfMethods = efforts[0]['total']
-                        let myKeyValueObject = {
-                            totalOfMethods: totalOfMethods
+                    $.ajax({
+                        type: "GET",
+                        url: `https://jazzy-sundae-89e3ee.netlify.app/jsonFile.json`,
+                        dataType: "json",
+                        success: function (result, status, xhr) {
+                            getMethods(result)
+                        },
+                        error: function (xhr, status, error) {
+                            alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
                         }
-                        t.set('card', 'shared', myKeyValueObject)
-
-                        var checkedMethods = []
-                        if (uxMethod) {
-                            console.log("razan####uxMethod");
-                            console.log(uxMethod);
-                            console.log(JSON.stringify(uxMethod));
-                            var db = JSON.stringify(uxMethod);
-                            checkedMethods = $.parseJSON(db);
-                            console.log("razan#" + checkedMethods.length);
-                        }
-                        else {
-                            console.log("razan####else");
-                        }
-
-                        var data = "";
-                        selectedBundle.forEach(function (item, index) {
-                            checked = "";
-                            //checked
-                            if (checkedMethods.includes(item["id"])) {
-                                checked = "checked"
-                            }
-                            else {
-                                console.log("else" + item);
-                            }
-
-                            data += '<label class="tasks-list-item">'
-                            data += "<input type='checkbox' name='task_" + item["id"] + "' value='" + item["id"] + "'class='tasks-list-cb'" + checked + ">";
-                            data += "<span class='tasks-list-mark'></span>";
-                            data += "<span class='tasks-list-desc'>" + item["name"] + "</span><br>";
-                            data += "<span class='tasks-list-hint'>" + item["description"] + "</span>";
-                            data += '</label>'
-                        });
-                        $("#content").html(data);
-                    })
+                    });
                     console.log("razan-------FIRST");
                 }).then(function () {
                     var check;
@@ -186,7 +153,7 @@
                                                                 var cardId = result.id
                                                                 var key = "778b9d7642733cfb0ebf236f01dbb60b"
                                                                 var token = "24ed114f066afbd724b13545f887c02f1f1f438e63d86b9d5e5c4c05e83c563d"
-                                            
+
                                                                 if (doneListId != result.idList) {
                                                                     let myKeyValueObject = {
                                                                         currentList: result.idList
@@ -202,7 +169,7 @@
 
                                                                                 success: function (result, status, xhr) {
                                                                                     console.log("WOOOOW");
-                                                                                    t.alert({message: 'You\'ve completed this task, and it has been move to "Done List"  🥳🎉'});
+                                                                                    t.alert({ message: 'You\'ve completed this task, and it has been move to "Done List"  🥳🎉' });
                                                                                 },
                                                                                 error: function (xhr, status, error) {
                                                                                     alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
@@ -249,7 +216,7 @@
                                                                         var cardId = result.id
                                                                         var key = "778b9d7642733cfb0ebf236f01dbb60b"
                                                                         var token = "24ed114f066afbd724b13545f887c02f1f1f438e63d86b9d5e5c4c05e83c563d"
-                                                                      
+
                                                                         if (doneListId == result.idList) {
                                                                             console.log("we are in the done list");
                                                                             //move card to done list
@@ -350,6 +317,53 @@
                     } else
                         console.log("razan are not equal");
                 });
+        }
+
+        function getMethods() {
+            var efforts = data.efforts.filter(function (el) {
+                //todo: fix ID 
+                return el.id == uxScore;
+            });
+
+            const selectedBundle = efforts[0]['bundle']
+            const totalOfMethods = efforts[0]['total']
+            let myKeyValueObject = {
+                totalOfMethods: totalOfMethods
+            }
+            t.set('card', 'shared', myKeyValueObject)
+
+            var checkedMethods = []
+            if (uxMethod) {
+                console.log("razan####uxMethod");
+                console.log(uxMethod);
+                console.log(JSON.stringify(uxMethod));
+                var db = JSON.stringify(uxMethod);
+                checkedMethods = $.parseJSON(db);
+                console.log("razan#" + checkedMethods.length);
+            }
+            else {
+                console.log("razan####else");
+            }
+
+            var data = "";
+            selectedBundle.forEach(function (item, index) {
+                checked = "";
+                //checked
+                if (checkedMethods.includes(item["id"])) {
+                    checked = "checked"
+                }
+                else {
+                    console.log("else" + item);
+                }
+
+                data += '<label class="tasks-list-item">'
+                data += "<input type='checkbox' name='task_" + item["id"] + "' value='" + item["id"] + "'class='tasks-list-cb'" + checked + ">";
+                data += "<span class='tasks-list-mark'></span>";
+                data += "<span class='tasks-list-desc'>" + item["name"] + "</span><br>";
+                data += "<span class='tasks-list-hint'>" + item["description"] + "</span>";
+                data += '</label>'
+            });
+            $("#content").html(data);
         }
     </script>
 </header>
