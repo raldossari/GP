@@ -1,7 +1,0 @@
-[build]
-  publish = "public"
-
-[[redirects]]
-  from = "/"
-  to = "/jsonFile.json"
-  status = 302
