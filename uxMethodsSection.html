@@ -102,7 +102,51 @@
                         url: `https://jazzy-sundae-89e3ee.netlify.app/jsonFile.json`,
                         dataType: "json",
                         success: function (result, status, xhr) {
-                            getMethods(result,uxScore, uxMethod)
+                            var efforts = result.efforts.filter(function (el) {
+                                //todo: fix ID 
+                                return el.id == uxScore;
+                            });
+
+                            JSON.stringify("razan1111"+result)
+                            const selectedBundle = efforts[0]['bundle']
+                            const totalOfMethods = efforts[0]['total']
+                            let myKeyValueObject = {
+                                totalOfMethods: totalOfMethods
+                            }
+                            t.set('card', 'shared', myKeyValueObject)
+
+                            var checkedMethods = []
+                            if (uxMethod) {
+                                console.log("razan####uxMethod");
+                                console.log(uxMethod);
+                                console.log(JSON.stringify(uxMethod));
+                                var db = JSON.stringify(uxMethod);
+                                checkedMethods = $.parseJSON(db);
+                                console.log("razan#" + checkedMethods.length);
+                            }
+                            else {
+                                console.log("razan####else");
+                            }
+
+                            var data = "";
+                            selectedBundle.forEach(function (item, index) {
+                                checked = "";
+                                //checked
+                                if (checkedMethods.includes(item["id"])) {
+                                    checked = "checked"
+                                }
+                                else {
+                                    console.log("else" + item);
+                                }
+
+                                data += '<label class="tasks-list-item">'
+                                data += "<input type='checkbox' name='task_" + item["id"] + "' value='" + item["id"] + "'class='tasks-list-cb'" + checked + ">";
+                                data += "<span class='tasks-list-mark'></span>";
+                                data += "<span class='tasks-list-desc'>" + item["name"] + "</span><br>";
+                                data += "<span class='tasks-list-hint'>" + item["description"] + "</span>";
+                                data += '</label>'
+                            });
+                            $("#content").html(data);
                         },
                         error: function (xhr, status, error) {
                             alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
@@ -317,53 +361,6 @@
                     } else
                         console.log("razan are not equal");
                 });
-        }
-
-        function getMethods(result,uxScore, uxMethod) {
-            var efforts = result.efforts.filter(function (el) {
-                //todo: fix ID 
-                return el.id == uxScore;
-            });
-
-            const selectedBundle = efforts[0]['bundle']
-            const totalOfMethods = efforts[0]['total']
-            let myKeyValueObject = {
-                totalOfMethods: totalOfMethods
-            }
-            t.set('card', 'shared', myKeyValueObject)
-
-            var checkedMethods = []
-            if (uxMethod) {
-                console.log("razan####uxMethod");
-                console.log(uxMethod);
-                console.log(JSON.stringify(uxMethod));
-                var db = JSON.stringify(uxMethod);
-                checkedMethods = $.parseJSON(db);
-                console.log("razan#" + checkedMethods.length);
-            }
-            else {
-                console.log("razan####else");
-            }
-
-            var data = "";
-            selectedBundle.forEach(function (item, index) {
-                checked = "";
-                //checked
-                if (checkedMethods.includes(item["id"])) {
-                    checked = "checked"
-                }
-                else {
-                    console.log("else" + item);
-                }
-
-                data += '<label class="tasks-list-item">'
-                data += "<input type='checkbox' name='task_" + item["id"] + "' value='" + item["id"] + "'class='tasks-list-cb'" + checked + ">";
-                data += "<span class='tasks-list-mark'></span>";
-                data += "<span class='tasks-list-desc'>" + item["name"] + "</span><br>";
-                data += "<span class='tasks-list-hint'>" + item["description"] + "</span>";
-                data += '</label>'
-            });
-            $("#content").html(data);
         }
     </script>
 </header>
