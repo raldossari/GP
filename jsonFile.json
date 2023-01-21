@@ -1,0 +1,78 @@
+{
+  "efforts": [
+    {
+      "id": 7,
+      "total": 2,
+      "bundle": [
+        {
+          "id": "ux_1",
+          "name": "Design review",
+          "description": "description1"
+        },
+        {
+          "id": "ux_2",
+          "name": "Low fidelity prototype",
+          "description": "description1"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "total": 2,
+      "bundle": [
+        {
+          "id": "ux_1",
+          "name": "Design review",
+          "description": "description1"
+        },
+        {
+          "id": "ux_2",
+          "name": "Low fidelity prototype",
+          "description": "description1"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "total": 2,
+      "bundle": [
+        {
+          "id": "ux_1",
+          "name": "Design review",
+          "description": "description1"
+        },
+        {
+          "id": "ux_2",
+          "name": "Low fidelity prototype",
+          "description": "description1"
+        }
+      ]
+    },
+    {
+      "id": 7.6,
+      "total": 3,
+      "bundle": [
+        {
+          "id": "ux_1",
+          "name": "Design review",
+          "description": "description1"
+        },
+        {
+          "id": "ux_2",
+          "name": "Low fidelity prototype",
+          "description": "description1"
+        },
+        {
+          "id": "ux_3",
+          "name": "Remote usability testing",
+          "description": "description1"
+        },
+        {
+          "id": "ux_4",
+          "name": "User interview",
+          "description": "description1"
+        }
+      ]
+    }
+  ]
+}

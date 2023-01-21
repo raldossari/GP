@@ -1,16 +1,366 @@
 <!DOCTYPE html>
 <html>
-<style>
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-  
-</script>
+<header>
+    <style>
+        @import url(https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css);
+
+        body {
+            font: 13px/20px 'Lucida Grande', Verdana, sans-serif;
+        }
+
+        .tasks-list-item {
+            display: block;
+            line-height: 24px;
+            padding: 8px 0px;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .tasks-list-item+.tasks-list-item {
+            border-top: 1px solid #CFD0D2;
+        }
+
+        .tasks-list-cb {
+            display: none;
+        }
+
+        .tasks-list-mark {
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #5E6C84;
+            border-radius: 12px;
+        }
+
+        .tasks-list-mark:before {
+            content: '';
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -5px 0 0 -6px;
+            height: 4px;
+            width: 8px;
+            border: solid #39ca74;
+            border-width: 0 0 4px 4px;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+
+        .tasks-list-cb:checked~.tasks-list-mark {
+            border-color: #39ca74;
+        }
+
+        .tasks-list-cb:checked~.tasks-list-mark:before {
+            display: block;
+        }
+
+        .tasks-list-desc {
+            font-weight: bold;
+            font-size: 12px;
+            color: #5E6C84;
+        }
+
+        .tasks-list-hint {
+            color: #5E6C84;
+            font-size: 10px;
+        }
+
+        .tasks-list-cb:checked~.tasks-list-desc {
+            color: #34bf6e;
+            text-decoration: line-through;
+        }
+
+        .tasks-list-cb:checked~.tasks-list-hint {
+            color: #34bf6e;
+            text-decoration: line-through;
+        }
+    </style>
+    <script src="https://p.trellocdn.com/power-up.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+        const t = window.TrelloPowerUp.iframe();
+        //fill list
+        $(document).ready(function () {
+            console.log("&&&&&&&");
+            return t.getAll('card', 'shared')
+                .then(function (sharedData) {
+                    var { card: { shared: { uxScore, uxMethod } } } = sharedData;
+                    $.getJSON("jsonFile.json", function (data) {
+                        var efforts = data.efforts.filter(function (el) {
+                            //todo: fix ID 
+                            return el.id == uxScore;
+                        });
+
+                        const selectedBundle = efforts[0]['bundle']
+                        const totalOfMethods = efforts[0]['total']
+                        let myKeyValueObject = {
+                            totalOfMethods: totalOfMethods
+                        }
+                        t.set('card', 'shared', myKeyValueObject)
+
+                        var checkedMethods = []
+                        if (uxMethod) {
+                            console.log("razan####uxMethod");
+                            console.log(uxMethod);
+                            console.log(JSON.stringify(uxMethod));
+                            var db = JSON.stringify(uxMethod);
+                            checkedMethods = $.parseJSON(db);
+                            console.log("razan#" + checkedMethods.length);
+                        }
+                        else {
+                            console.log("razan####else");
+                        }
+
+                        var data = "";
+                        selectedBundle.forEach(function (item, index) {
+                            checked = "";
+                            //checked
+                            if (checkedMethods.includes(item["id"])) {
+                                checked = "checked"
+                            }
+                            else {
+                                console.log("else" + item);
+                            }
+
+                            data += '<label class="tasks-list-item">'
+                            data += "<input type='checkbox' name='task_" + item["id"] + "' value='" + item["id"] + "'class='tasks-list-cb'" + checked + ">";
+                            data += "<span class='tasks-list-mark'></span>";
+                            data += "<span class='tasks-list-desc'>" + item["name"] + "</span><br>";
+                            data += "<span class='tasks-list-hint'>" + item["description"] + "</span>";
+                            data += '</label>'
+                        });
+                        $("#content").html(data);
+                    })
+                    console.log("razan-------FIRST");
+                }).then(function () {
+                    var check;
+                    $(document).on("click", ".tasks-list-cb", function () {
+                        console.log("razan-------CHECKED");
+                        //now i will store the new method
+                        var check = $(this).is(":checked");
+                        var methodId = $(this).attr("value");
+                        var checkedMethods = []
+                        return t.getAll('card', 'shared')
+                            .then(function (sharedData) {
+
+                                var { card: { shared: { uxMethod, totalOfMethods } } } = sharedData;
+                                if (uxMethod) {
+                                    console.log(uxMethod);
+                                    console.log(JSON.stringify(uxMethod));
+                                    var db = JSON.stringify(uxMethod);
+                                    checkedMethods = $.parseJSON(db);
+                                    console.log("razan#" + checkedMethods.length);
+                                    console.log("razan" + checkedMethods[0]);
+                                }
+                                else {
+                                    console.log("empty");
+                                }
+                                if (check) {
+                                    console.log("Checkbox is checked.");
+                                    checkedMethods.push(methodId);
+                                    let myKeyValueObject = {
+                                        uxMethod: checkedMethods
+                                    }
+                                    t.set('card', 'shared', myKeyValueObject).then(function () {
+                                        console.log("here please");
+
+                                        return t.getAll('card', 'shared')
+                                            .then(function (sharedData) {
+                                                var { card: { shared: { uxMethod, totalOfMethods } } } = sharedData;
+                                                if (uxMethod.length == totalOfMethods) {
+                                                    console.log("razan are equal");
+                                                    t.card('id', 'idList').then(function (result) {
+                                                        t.getAll('board', 'shared')
+                                                            .then(function (sharedData) {
+                                                                var { board: { shared: { doneListId } } } = sharedData;
+                                                                var cardId = result.id
+                                                                var key = "778b9d7642733cfb0ebf236f01dbb60b"
+                                                                var token = "24ed114f066afbd724b13545f887c02f1f1f438e63d86b9d5e5c4c05e83c563d"
+                                            
+                                                                if (doneListId != result.idList) {
+                                                                    let myKeyValueObject = {
+                                                                        currentList: result.idList
+                                                                    }
+                                                                    t.set('card', 'shared', myKeyValueObject)
+                                                                        .then(function () {
+                                                                            console.log("here please!!");
+                                                                            //move card to done list
+                                                                            $.ajax({
+                                                                                type: "PUT",
+                                                                                url: `https://api.trello.com/1/cards/${cardId}?key=${key}&token=${token}&idList=${doneListId}`,
+                                                                                dataType: "json",
+
+                                                                                success: function (result, status, xhr) {
+                                                                                    console.log("WOOOOW");
+                                                                                    t.alert({message: 'You\'ve completed this task, and it has been move to "Done List"  🥳🎉'});
+                                                                                },
+                                                                                error: function (xhr, status, error) {
+                                                                                    alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                                                                                }
+                                                                            });
+                                                                        });
+
+                                                                }
+                                                                else {
+                                                                    console.log(`great!!!`);
+                                                                }
+
+                                                            })
+                                                    })
+                                                } else
+                                                    console.log("razan are not equal");
+                                            });
+                                    });
+
+                                } else {
+                                    console.log("Checkbox is unchecked.");
+                                    //I will remove an item
+                                    var index = checkedMethods.indexOf(methodId);
+                                    if (index !== -1) {
+                                        checkedMethods.splice(index, 1);
+                                    }
+                                    t.remove('card', 'shared', ['uxMethod']);
+                                    let myKeyValueObject = {
+                                        uxMethod: checkedMethods
+                                    }
+                                    if (checkedMethods.length != 0) {
+                                        return t.set('card', 'shared', myKeyValueObject)
+                                            .then(function () {
+                                                console.log("here please razan");
+                                                return t.getAll('card', 'shared')
+                                                    .then(function (sharedData) {
+                                                        var { card: { shared: { uxMethod, totalOfMethods, currentList } } } = sharedData;
+                                                        if (uxMethod.length < totalOfMethods) {
+                                                            console.log("we need to put it back");
+                                                            t.card('id', 'idList').then(function (result) {
+                                                                t.getAll('board', 'shared')
+                                                                    .then(function (sharedData) {
+                                                                        var { board: { shared: { doneListId } } } = sharedData;
+                                                                        var cardId = result.id
+                                                                        var key = "778b9d7642733cfb0ebf236f01dbb60b"
+                                                                        var token = "24ed114f066afbd724b13545f887c02f1f1f438e63d86b9d5e5c4c05e83c563d"
+                                                                      
+                                                                        if (doneListId == result.idList) {
+                                                                            console.log("we are in the done list");
+                                                                            //move card to done list
+                                                                            $.ajax({
+                                                                                type: "PUT",
+                                                                                url: `https://api.trello.com/1/cards/${cardId}?key=${key}&token=${token}&idList=${currentList}`,
+                                                                                dataType: "json",
+                                                                                success: function (result, status, xhr) {
+                                                                                    console.log("WOOOOW, we put it back");
+                                                                                },
+                                                                                error: function (xhr, status, error) {
+                                                                                    alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                                                                                }
+                                                                            });
+
+                                                                        }
+                                                                        else {
+                                                                            console.log(`great!!!`);
+                                                                        }
+
+                                                                    })
+                                                            })
+                                                        } else
+                                                            console.log("razan are not equal");
+                                                    })
+                                            })
+                                    }
+                                    else {
+                                        console.log("Array is empty!")
+                                    }
+                                }
+                            })
+                    });
+                })
+        });
+
+        //add check to finished list
+        $(document).ready(function () {
+            return t.getAll('card', 'shared')
+                .then(function (sharedData) {
+                    console.log("razan####");
+                    var { card: { shared: { uxMethod } } } = sharedData;
+                    var checkedMethods = []
+                    if (uxMethod) {
+                        console.log("razan####uxMethod");
+                        console.log(uxMethod);
+                        console.log(JSON.stringify(uxMethod));
+                        var db = JSON.stringify(uxMethod);
+                        checkedMethods = $.parseJSON(db);
+                        console.log("razan#" + checkedMethods.length);
+                        //here 
+                        $(document).each(".tasks-list-cb", function () {
+                            var attrib = $(this).attr("value");
+                            for (var x = 0; x < checkedMethods.length; x++) {
+                                if (checkedMethods[x] == attrib) {
+                                    $(this).attr("checked", "checked");
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        console.log("razan####else");
+                    }
+                })
+                .then(function () {
+                    // t.sizeTo('#content').done();
+                })
+        });
+
+
+        function storeCurrentList() {
+            console.log("here please");
+            return t.getAll('card', 'shared')
+                .then(function (sharedData) {
+
+                    var { card: { shared: { uxMethod, totalOfMethods } } } = sharedData;
+                    if (uxMethod.length == totalOfMethods) {
+                        console.log("razan are equal");
+                        t.card('idList').then(function (result) {
+                            t.getAll('board', 'shared')
+                                .then(function (sharedData) {
+                                    var { board: { shared: { doneListId } } } = sharedData;
+                                    console.log(`Hello from ${result.idList}`);
+                                    console.log(`Hello from doneListId ${doneListId}`);
+                                    if (doneListId != result.idList) {
+                                        let myKeyValueObject = {
+                                            currentList: result.idList
+                                        }
+                                        t.set('card', 'shared', myKeyValueObject)
+
+                                    }
+                                    else {
+                                        console.log(`great!!!`);
+                                    }
+
+                                })
+                        })
+                    } else
+                        console.log("razan are not equal");
+                });
+        }
+    </script>
+</header>
 
 <body>
- <div>
-  <h4>Not yet ready</h4>
- </div>
+    <fieldset>
+        <div id="content">
+            You can take 3 out of 5
+            <br>
+        </div>
+    </fieldset>
 </body>
 
 </html>

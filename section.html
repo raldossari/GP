@@ -2,7 +2,13 @@
 
 <head>
   <link rel="stylesheet" href="https://p.trellocdn.com/power-up.min.css">
-  <!-- <link rel="stylesheet" href="https://trello.com/power-ups-power-up.css"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <style>
     .block {
       display: block;
@@ -26,11 +32,6 @@
       color: white;
     }
 
-    .tablink {
-      /* background-color: #0079BF;
-      color: white; */
-    }
-
     .radio-toolbar input[type="radio"] {
       display: none;
     }
@@ -45,90 +46,183 @@
     }
 
     .radio-toolbar input[type="radio"]:checked+label {
-      background-color: #bbb;
+      background-color: #0079BF;
+      color: white;
     }
   </style>
   <script src="https://p.trellocdn.com/power-up.min.js"></script>
   <script src="./js/section.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script>
-    function showValueScore(count) {
-      document.getElementById("value").value = count;
-      // $('.tablink').click(function (e) {
-      //   $('.tablink').removeClass('active');
-      //   $(this).addClass('active');
-      // });
-    }
-    function showFamiliarityScore(count) {
-      document.getElementById("familiarity").value = count;
-    }
-    function showClarityScore(count) {
-      document.getElementById("clarity").value = count;
-    }
+    var colors = ['#33ff00', '#66ff00', '#99ff00', '#ccff00', '#FFFF00', '#FFCC00', '#ff9900', '#ff6600', '#FF3300', '#FF0000'];
+    var t = window.TrelloPowerUp.iframe();
     $(document).ready(function () {
-      $('.tablink').click(function () {
-        $("#value").attr("value") = $(this).attr("value")
-        $(this).toggleClass('active');
+      $(".radioBtnV").click(function () {
+        var score = $(this).attr("value");
+        $("#potentialValue").val(score);
+        // if ($(this).is(":checked")) {
+        //   $('input[type="radio"]:checked+label').css('background-color', colors[parseInt(score) - 1]);
+        // }
+
       });
     });
+
+    $(document).ready(function () {
+      $(".radioBtnF").click(function () {
+        var score = $(this).attr("value");
+        $("#familiarity").val(score);
+
+        $(this).css('background-color', colors[Math.floor(Math.random() * colors.length)]);
+
+      });
+    });
+
+    $(document).ready(function () {
+      $(".radioBtnC").click(function () {
+        var score = $(this).attr("value");
+        $("#clarity").val(score);
+
+        $(this).css('background-color', colors[Math.floor(Math.random() * colors.length)]);
+
+      });
+    });
+
+    //submit buttom
+    $(document).ready(function () {
+      $("#submit").click(function () {
+        var potentialValue = $("#potentialValue").val();
+        var familiarity = $("#familiarity").val();
+        var clarity = $("#clarity").val();
+        t.remove('card', 'shared', ['potentialValue', 'familiarity', 'clarity', 'uxScore']);
+
+        uxScore = calculateUXScore(potentialValue, familiarity, clarity);
+
+        let myKeyValueObject = {
+          potentialValue: potentialValue,
+          familiarity: familiarity,
+          clarity: clarity,
+          uxScore: uxScore
+        }
+
+        return t.set('card', 'shared', myKeyValueObject)
+          .then(function (data) {
+            t.closePopup();
+          });
+
+
+      });
+    });
+
+    t.render(function () {
+      return t.getAll('card', 'shared')
+        .then(function (sharedData) {
+          if (Object.keys(sharedData).length > 0) {
+            var { card: { shared: { potentialValue, familiarity, clarity } } } = sharedData;
+            if (potentialValue && familiarity && familiarity) {
+              $("#potentialValue").val(potentialValue);
+              $("#familiarity").val(familiarity);
+              $("#clarity").val(clarity);
+              $("#radio" + potentialValue + "V").prop("checked", true);
+              $("#radio" + familiarity + "F").prop("checked", true);
+              $("#radio" + clarity + "C").prop("checked", true);
+            }
+          }
+        })
+        .then(function () {
+          t.sizeTo('#content').done();
+        })
+    });
+
+
+    function calculateUXScore(potentialValue, familiarity, clarity) {
+      uxScore = ((6 * potentialValue) + (3 * (10 - familiarity)) + (1 * (10 - clarity))) / 10.0
+      return uxScore
+    }
+
   </script>
 </head>
 
 <body>
   <div id="content">
     <form>
-      <label for="value">Potential value:</label>
-      <input type="text" id="value" name="value" placeholder="select a score" disabled>
+      <label for="value">Potential value:</label> <a href="#" data-toggle="tooltip" data-placement="right"
+        title="this means bla bla bla"><span class="fa fa-info-circle" style="font-size:18px;color:#C9C9C9"
+          data-toggle="tooltip"></span></a>
+      <input type="text" id="potentialValue" name="value" placeholder="select a score" disabled>
       <div class="radio-toolbar">
-        <input type="radio" id="radio1" name="radios" value="1">
-        <label for="radio1">1</label>
-        <input type="radio" id="radio2" name="radios" value="2">
-        <label for="radio2">2</label>
-        <input type="radio" id="radio3" name="radios" value="3">
-        <label for="radio3">3</label>
-        <input type="radio" id="radio4" name="radios" value="4">
-        <label for="radio1">4</label>
-        <input type="radio" id="radio5" name="radios" value="5">
-        <label for="radio2">5</label>
-        <input type="radio" id="radio6" name="radios" value="6">
-        <label for="radio3">6</label>
-        <input type="radio" id="radio7" name="radios" value="7">
-        <label for="radio1">7</label>
-        <input type="radio" id="radio8" name="radios" value="8">
-        <label for="radio2">8</label>
-        <input type="radio" id="radio9" name="radios" value="9">
-        <label for="radio3">9</label>
-        <input type="radio" id="radio10" name="radios" value="10">
-        <label for="radio1">10</label>
+        <input class="radioBtnV" type="radio" id="radio1V" name="pvRadios" value="1" style="background-color: #33ff00;">
+        <label for="radio1V">1</label>
+        <input class="radioBtnV" type="radio" id="radio2V" name="pvRadios" value="2" style="background-color: #66ff00;">
+        <label for="radio2V">2</label>
+        <input class="radioBtnV" type="radio" id="radio3V" name="pvRadios" value="3" style="background-color: #99ff00;">
+        <label for="radio3V">3</label>
+        <input class="radioBtnV" type="radio" id="radio4V" name="pvRadios" value="4" style="background-color: #ccff00;">
+        <label for="radio4V">4</label>
+        <input class="radioBtnV" type="radio" id="radio5V" name="pvRadios" value="5" style="background-color: #FFFF00;">
+        <label for="radio5V">5</label>
+        <input class="radioBtnV" type="radio" id="radio6V" name="pvRadios" value="6" style="background-color: #FFCC00;">
+        <label for="radio6V">6</label>
+        <input class="radioBtnV" type="radio" id="radio7V" name="pvRadios" value="7" style="background-color: #ff9900;">
+        <label for="radio7V">7</label>
+        <input class="radioBtnV" type="radio" id="radio8V" name="pvRadios" value="8" style="background-color: #ff6600;">
+        <label for="radio8V">8</label>
+        <input class="radioBtnV" type="radio" id="radio9V" name="pvRadios" value="9" style="background-color: #FF3300;">
+        <label for="radio9V">9</label>
+        <input class="radioBtnV" type="radio" id="radio10V" name="pvRadios" value="10"
+          style="background-color: #FF0000;">
+        <label for="radio10V">10</label>
       </div>
-      <br>
-      <label for="familiarity">Familiarity :</label>
+      <label for="familiarity">Familiarity :</label> <a href="#" data-toggle="tooltip" data-placement="right"
+        title="this means bla bla bla"><span class="fa fa-info-circle" style="font-size:18px;color:#C9C9C9"
+          data-toggle="tooltip"></span></a>
       <input type="text" id="familiarity" name="familiarity" placeholder="select a score" disabled>
-      <div class="btn-group-familiarity">
-        <button onclick="showFamiliarityScore('1')">1</button>
-        <button onclick="showFamiliarityScore('2')">2</button>
-        <button onclick="showFamiliarityScore('3')">3</button>
-        <button onclick="showFamiliarityScore('4')">4</button>
-        <button onclick="showFamiliarityScore('5')">5</button>
-        <button onclick="showFamiliarityScore('6')">6</button>
-        <button onclick="showFamiliarityScore('7')">7</button>
-        <button onclick="showFamiliarityScore('8')">8</button>
-        <button onclick="showFamiliarityScore('9')">9</button>
-        <button onclick="showFamiliarityScore('10')">10</button>
-      </div><br>
-      <label for="clarity">Clarity :</label>
+      <div class="radio-toolbar">
+        <input class="radioBtnF" type="radio" id="radio1F" name="fRadios" value="1">
+        <label for="radio1F">1</label>
+        <input class="radioBtnF" type="radio" id="radio2F" name="fRadios" value="2">
+        <label for="radio2F">2</label>
+        <input class="radioBtnF" type="radio" id="radio3F" name="fRadios" value="3">
+        <label for="radio3F">3</label>
+        <input class="radioBtnF" type="radio" id="radio4F" name="fRadios" value="4">
+        <label for="radio4F">4</label>
+        <input class="radioBtnF" type="radio" id="radio5F" name="fRadios" value="5">
+        <label for="radio5F">5</label>
+        <input class="radioBtnF" type="radio" id="radio6F" name="fRadios" value="6">
+        <label for="radio6F">6</label>
+        <input class="radioBtnF" type="radio" id="radio7F" name="fRadios" value="7">
+        <label for="radio7F">7</label>
+        <input class="radioBtnF" type="radio" id="radio8F" name="fRadios" value="8">
+        <label for="radio8F">8</label>
+        <input class="radioBtnF" type="radio" id="radio9F" name="fRadios" value="9">
+        <label for="radio9F">9</label>
+        <input class="radioBtnF" type="radio" id="radio10F" name="fRadios" value="10">
+        <label for="radio10F">10</label>
+      </div>
+      <label for="clarity">Clarity :</label> <a href="#" data-toggle="tooltip" data-placement="right"
+        title="this means bla bla bla"><span class="fa fa-info-circle" style="font-size:18px;color:#C9C9C9"
+          data-toggle="tooltip"></span></a>
       <input type="text" id="clarity" name="clarity" placeholder="select a score" disabled>
-      <div class="btn-group-clarity">
-        <button onclick="showClarityScore('1')">1</button>
-        <button onclick="showClarityScore('2')">2</button>
-        <button onclick="showClarityScore('3')">3</button>
-        <button onclick="showClarityScore('4')">4</button>
-        <button onclick="showClarityScore('5')">5</button>
-        <button onclick="showClarityScore('6')">6</button>
-        <button onclick="showClarityScore('7')">7</button>
-        <button onclick="showClarityScore('8')">8</button>
-        <button onclick="showClarityScore('9')">9</button>
-        <button onclick="showClarityScore('10')">10</button>
+      <div class="radio-toolbar">
+        <input class="radioBtnC" type="radio" id="radio1C" name="cRadios" value="1">
+        <label for="radio1C">1</label>
+        <input class="radioBtnC" type="radio" id="radio2C" name="cRadios" value="2">
+        <label for="radio2C">2</label>
+        <input class="radioBtnC" type="radio" id="radio3C" name="cRadios" value="3">
+        <label for="radio3C">3</label>
+        <input class="radioBtnC" type="radio" id="radio4C" name="cRadios" value="4">
+        <label for="radio4C">4</label>
+        <input class="radioBtnC" type="radio" id="radio5C" name="cRadios" value="5">
+        <label for="radio5C">5</label>
+        <input class="radioBtnC" type="radio" id="radio6C" name="cRadios" value="6">
+        <label for="radio6C">6</label>
+        <input class="radioBtnC" type="radio" id="radio7C" name="cRadios" value="7">
+        <label for="radio7C">7</label>
+        <input class="radioBtnC" type="radio" id="radio8C" name="cRadios" value="8">
+        <label for="radio8C">8</label>
+        <input class="radioBtnC" type="radio" id="radio9C" name="cRadios" value="9">
+        <label for="radio9C">9</label>
+        <input class="radioBtnC" type="radio" id="radio10C" name="cRadios" value="10">
+        <label for="radio10C">10</label>
       </div>
       <br>
       <button id="submit" class="block">
