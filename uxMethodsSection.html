@@ -102,7 +102,7 @@
                         url: `https://jazzy-sundae-89e3ee.netlify.app/jsonFile.json`,
                         dataType: "json",
                         success: function (result, status, xhr) {
-                            getMethods(result)
+                            getMethods(result,uxScore, uxMethod)
                         },
                         error: function (xhr, status, error) {
                             alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
@@ -319,7 +319,7 @@
                 });
         }
 
-        function getMethods(result) {
+        function getMethods(result,uxScore, uxMethod) {
             var efforts = result.efforts.filter(function (el) {
                 //todo: fix ID 
                 return el.id == uxScore;
