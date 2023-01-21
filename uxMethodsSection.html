@@ -96,7 +96,6 @@
             return t.getAll('card', 'shared')
                 .then(function (sharedData) {
                     var { card: { shared: { uxScore, uxMethod } } } = sharedData;
-
                     $.ajax({
                         type: "GET",
                         url: `https://jazzy-sundae-89e3ee.netlify.app/jsonFile.json`,
@@ -107,7 +106,8 @@
                                 return el.id == uxScore;
                             });
 
-                            JSON.stringify("razan1111"+result)
+                           str =  JSON.stringify(result)
+                           console.log("razan1111111"+str);
                             const selectedBundle = efforts[0]['bundle']
                             const totalOfMethods = efforts[0]['total']
                             let myKeyValueObject = {
