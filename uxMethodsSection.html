@@ -319,8 +319,8 @@
                 });
         }
 
-        function getMethods() {
-            var efforts = data.efforts.filter(function (el) {
+        function getMethods(result) {
+            var efforts = result.efforts.filter(function (el) {
                 //todo: fix ID 
                 return el.id == uxScore;
             });
