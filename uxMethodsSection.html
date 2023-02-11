@@ -106,7 +106,7 @@
                                 return el.id == uxScore;
                             });
 
-                           str =  JSON.stringify(result)
+                            str = JSON.stringify(result)
                             const selectedBundle = efforts[0]['bundle']
                             const totalOfMethods = efforts[0]['total']
                             let myKeyValueObject = {
@@ -142,7 +142,7 @@
                                 data += "<input type='checkbox' name='task_" + item["id"] + "' value='" + item["id"] + "'class='tasks-list-cb'" + checked + ">";
                                 data += "<span class='tasks-list-mark'></span>";
                                 data += "<span class='tasks-list-desc'>" + item["name"] + "</span><br>";
-                                data += "<span class='tasks-list-hint'>" + item["description"] + "</span>";
+                                // data += "<span class='tasks-list-hint'>" + item["description"] + "</span>";
                                 data += '</label>'
                             });
                             $("#content").html(data);
@@ -366,9 +366,10 @@
 
 <body>
     <fieldset>
-        <div id="content">
-            You can take 3 out of 5
+        <div id="contaier">
+            You can take 3 out of 4
             <br>
+            <div id="content"></div>
         </div>
     </fieldset>
 </body>
