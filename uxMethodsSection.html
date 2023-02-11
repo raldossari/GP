@@ -98,7 +98,7 @@
                     var { card: { shared: { uxScore, uxMethod } } } = sharedData;
                     $.ajax({
                         type: "GET",
-                        url: `https://jazzy-sundae-89e3ee.netlify.app/jsonFile.json`,
+                        url: `https://ux-estimator.netlify.app/jsonFile.json`,
                         dataType: "json",
                         success: function (result, status, xhr) {
                             var efforts = result.efforts.filter(function (el) {
