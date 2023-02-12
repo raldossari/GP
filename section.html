@@ -113,28 +113,25 @@
     });
 
     t.render(function () {
-      console.log("razan :");
-      return
-      t.sizeTo('#content').done()
+      return t.getAll('card', 'shared')
+        .then(function (sharedData) {
+          if (Object.keys(sharedData).length > 0) {
+            var { card: { shared: { potentialValue, familiarity, clarity } } } = sharedData;
+            if (potentialValue && familiarity && familiarity) {
+              $("#potentialValue").val(potentialValue);
+              $("#familiarity").val(familiarity);
+              $("#clarity").val(clarity);
+              $("#radio" + potentialValue + "V").prop("checked", true);
+              $("#radio" + familiarity + "F").prop("checked", true);
+              $("#radio" + clarity + "C").prop("checked", true);
+            }
+          }
+        })
         .then(function () {
-          t.getAll('card', 'shared')
-            .then(function (sharedData) {
-              if (Object.keys(sharedData).length > 0) {
-                var { card: { shared: { potentialValue, familiarity, clarity } } } = sharedData;
-                if (potentialValue && familiarity && familiarity) {
-                  $("#potentialValue").val(potentialValue);
-                  $("#familiarity").val(familiarity);
-                  $("#clarity").val(clarity);
-                  $("#radio" + potentialValue + "V").prop("checked", true);
-                  $("#radio" + familiarity + "F").prop("checked", true);
-                  $("#radio" + clarity + "C").prop("checked", true);
-                }
-              }
-            })
+          console.log("razan :");
+          t.sizeTo('#content').done();
         })
     });
-
-
 
     function calculateUXScore(potentialValue, familiarity, clarity) {
       uxScore = ((6 * potentialValue) + (3 * (10 - familiarity)) + (1 * (10 - clarity))) / 10.0
@@ -145,7 +142,7 @@
 </head>
 
 <body id="content">
-  <div>
+  <div >
     <form>
       <label for="value">Potential value:</label> <a href="#" data-toggle="tooltip" data-placement="right"
         title="this means bla bla bla"><span class="fa fa-info-circle" style="font-size:18px;color:#C9C9C9"
