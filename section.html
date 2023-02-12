@@ -112,7 +112,14 @@
       });
     });
 
+
     t.render(function () {
+      console.log("razan :");
+      t.sizeTo('#content').done();
+    });
+
+    t.render(function () {
+      console.log("razan :getAll");
       return t.getAll('card', 'shared')
         .then(function (sharedData) {
           if (Object.keys(sharedData).length > 0) {
@@ -133,6 +140,7 @@
         })
     });
 
+
     function calculateUXScore(potentialValue, familiarity, clarity) {
       uxScore = ((6 * potentialValue) + (3 * (10 - familiarity)) + (1 * (10 - clarity))) / 10.0
       return uxScore
@@ -142,7 +150,7 @@
 </head>
 
 <body id="content">
-  <div >
+  <div>
     <form>
       <label for="value">Potential value:</label> <a href="#" data-toggle="tooltip" data-placement="right"
         title="this means bla bla bla"><span class="fa fa-info-circle" style="font-size:18px;color:#C9C9C9"
