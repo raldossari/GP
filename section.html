@@ -112,14 +112,9 @@
       });
     });
 
-
-    t.render(function () {
-      console.log("razan :");
-      t.sizeTo('#content').done();
-    });
-
     t.render(function () {
       console.log("razan :getAll");
+      t.sizeTo('#content').done();
       return t.getAll('card', 'shared')
         .then(function (sharedData) {
           if (Object.keys(sharedData).length > 0) {
@@ -133,10 +128,6 @@
               $("#radio" + clarity + "C").prop("checked", true);
             }
           }
-        })
-        .then(function () {
-          console.log("razan :");
-          t.sizeTo('#content').done();
         })
     });
 
