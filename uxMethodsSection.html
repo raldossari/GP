@@ -138,12 +138,12 @@
                                     console.log("else" + item);
                                 }
 
-                                // data += '<label class="tasks-list-item">'
-                                // data += "<input type='checkbox' name='task_" + item["id"] + "' value='" + item["id"] + "'class='tasks-list-cb'" + checked + ">";
-                                // data += "<span class='tasks-list-mark'></span>";
-                                // data += "<span class='tasks-list-desc'>" + item["name"] + "</span><br>";
-                                // // data += "<span class='tasks-list-hint'>" + item["description"] + "</span>";
-                                // data += '</label>'
+                                data += '<label class="tasks-list-item">'
+                                data += "<input type='checkbox' name='task_" + item["id"] + "' value='" + item["id"] + "'class='tasks-list-cb'" + checked + ">";
+                                data += "<span class='tasks-list-mark'></span>";
+                                data += "<span class='tasks-list-desc'>" + item["name"] + "</span><br>";
+                                // data += "<span class='tasks-list-hint'>" + item["description"] + "</span>";
+                                data += '</label>'
                             });
                             $("#content").html(data);
                         },
@@ -366,11 +366,11 @@
 
 <body>
     <fieldset>
-        <!-- <div id="contaier">
+        <div id="contaier">
             You can take 3 out of 4
             <br>
             <div id="content"></div>
-        </div> -->
+        </div>
     </fieldset>
 </body>
 
