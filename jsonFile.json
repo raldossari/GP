@@ -1,7 +1,7 @@
 {
   "efforts": [
     {
-      "id": 7,
+      "id": 1,
       "total": 2,
       "bundle": [
         {
@@ -33,7 +33,39 @@
       ]
     },
     {
-      "id": 5.2,
+      "id": 3,
+      "total": 2,
+      "bundle": [
+        {
+          "id": "ux_1",
+          "name": "Design review",
+          "description": "description1"
+        },
+        {
+          "id": "ux_2",
+          "name": "Low fidelity prototype",
+          "description": "description1"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "total": 2,
+      "bundle": [
+        {
+          "id": "ux_1",
+          "name": "Design review",
+          "description": "description1"
+        },
+        {
+          "id": "ux_2",
+          "name": "Low fidelity prototype",
+          "description": "description1"
+        }
+      ]
+    },
+    {
+      "id": 5,
       "total": 3,
       "bundle": [
         {
@@ -59,8 +91,8 @@
       ]
     },
     {
-      "id": 7.6,
-      "total": 3,
+      "id": 5.5,
+      "total": 4,
       "bundle": [
         {
           "id": "ux_1",
@@ -81,7 +113,217 @@
           "id": "ux_4",
           "name": "User interview",
           "description": "description1"
+        },
+        {
+          "id": "ux_5",
+          "name": "High fidelity prototype",
+          "description": "description1"
+        },
+        {
+          "id": "ux_6",
+          "name": "Analytics review",
+          "description": "description1"
         }
+      ]
+    },
+    {
+      "id": 6,
+      "total": 5,
+      "bundle": [
+        {
+          "id": "ux_1",
+          "name": "Design review",
+          "description": "description1"
+        },
+        {
+          "id": "ux_2",
+          "name": "User interview",
+          "description": "description1"
+        },
+        {
+          "id": "ux_3",
+          "name": "Competitive analysis",
+          "description": "description1"
+        },
+        {
+          "id": "ux_4",
+          "name": "Low fidelity prototype",
+          "description": "description1"
+        },
+        {
+          "id": "ux_5",
+          "name": "Remote usability testing",
+          "description": "description1"
+        },
+        {
+          "id": "ux_6",
+          "name": "High fidelity prototype",
+          "description": "description1"
+        },
+        {
+          "id": "ux_7",
+          "name": "Analytics review",
+          "description": "description1"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "total": 6,
+      "bundle": [
+        {
+          "id": "ux_1",
+          "name": "Design review",
+          "description": "description1"
+        },
+        {
+          "id": "ux_2",
+          "name": "User interview",
+          "description": "description1"
+        },
+        {
+          "id": "ux_3",
+          "name": "Competitive analysis",
+          "description": "description1"
+        },
+        {
+          "id": "ux_4",
+          "name": "Low fidelity prototype",
+          "description": "description1"
+        },
+        {
+          "id": "ux_5",
+          "name": "High fidelity prototype",
+          "description": "description1"
+        },
+        {
+          "id": "ux_6",
+          "name": "In-person usability testing",
+          "description": "description1"
+        },
+        {
+          "id": "ux_7",
+          "name": "Analytics review",
+          "description": "description1"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "total": 5,
+      "bundle": [
+        {
+          "id": "ux_1",
+          "name": "Field study",
+          "description": "description1"
+        },
+        {
+          "id": "ux_2",
+          "name": "Design review",
+          "description": "description1"
+        },
+        {
+          "id": "ux_3",
+          "name": "Competitive analysis",
+          "description": "description1"
+        },
+        {
+          "id": "ux_4",
+          "name": "High fidelity prototype",
+          "description": "description1"
+        },
+        {
+          "id": "ux_5",
+          "name": "In-person usability testing",
+          "description": "description1"
+        },
+        {
+          "id": "ux_6",
+          "name": "Analytics review",
+          "description": "description1"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "total": 6,
+      "bundle": [
+        {
+          "id": "ux_1",
+          "name": "Field study",
+          "description": "description1"
+        },
+        {
+          "id": "ux_2",
+          "name": "Design review",
+          "description": "description1"
+        },
+        {
+          "id": "ux_3",
+          "name": "Low fidelity prototype",
+          "description": "description1"
+        },
+        {
+          "id": "ux_4",
+          "name": "High fidelity prototype",
+          "description": "description1"
+        },
+        {
+          "id": "ux_5",
+          "name": "In-person usability testing",
+          "description": "description1"
+        },
+        {
+          "id": "ux_6",
+          "name": "Analytics review",
+          "description": "description1"
+        },
+        {
+          "id": "ux_7",
+          "name": "Competitive analysis",
+          "description": "description1"
+        }, 
+      ]
+    },
+    {
+      "id": 10,
+      "total": 7,
+        "bundle": [
+        {
+          "id": "ux_1",
+          "name": "Field study",
+          "description": "description1"
+        },
+        {
+          "id": "ux_2",
+          "name": "Design review",
+          "description": "description1"
+        },
+        {
+          "id": "ux_3",
+          "name": "Low fidelity prototype",
+          "description": "description1"
+        },
+        {
+          "id": "ux_4",
+          "name": "High fidelity prototype",
+          "description": "description1"
+        },
+        {
+          "id": "ux_5",
+          "name": "In-person usability testing",
+          "description": "description1"
+        },
+        {
+          "id": "ux_6",
+          "name": "Analytics review",
+          "description": "description1"
+        },
+        {
+          "id": "ux_7",
+          "name": "Competitive analysis",
+          "description": "description1"
+        } 
       ]
     }
   ]
