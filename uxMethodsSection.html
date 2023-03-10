@@ -103,7 +103,9 @@
                         success: function (result, status, xhr) {
                             var efforts = result.efforts.filter(function (el) {
                                 //todo: fix ID 
-                                return el.id == uxScore;
+                                if(uxScore == 5.5)
+                                    return el.id == uxScore
+                                else return el.id == Math.round(uxScore);
                             });
 
                             str = JSON.stringify(result)
