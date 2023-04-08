@@ -112,6 +112,10 @@
     body {
       margin-top: 40px;
       text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
 
     }
 
@@ -168,32 +172,48 @@
       border-radius: 100px;
     }
 
+
     .container {
       max-width: 800px;
-      margin: auto;
-      text-align: center;
-      padding: 50px;
-      background-color: #f0f0f0;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
     }
 
     h1 {
+      color: #4285f4;
       font-size: 36px;
       font-weight: bold;
-      color: #444;
-      margin-bottom: 30px;
+      margin: 0;
+      margin-bottom: 20px;
+      text-align: center;
     }
 
     p {
-      font-size: 24px;
-      line-height: 1.5em;
-      color: #666;
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 10px;
     }
 
+    ul {
+      list-style: disc;
+      margin: 0;
+      padding-left: 20px;
+    }
 
-    /* .list-group-item.active {
-      background-color: #030;
-      border-color: #aed248;
-    } */
+    li {
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+  </style>
+
+  /* .list-group-item.active {
+  background-color: #030;
+  border-color: #aed248;
+  } */
   </style>
   <!------ Include the above in your HEAD tag ---------->
 </head>
@@ -224,10 +244,13 @@
             <div class="container">
               <h1>Hello! Welcome to the UX-Estimator Trello Power-Up.</h1>
               <p>This tool is designed to help you and your agile team determine the value of conducting UX experiments.
-                With the UX-Estimator, you can easily estimate the effort required to conduct experiments and choose the
-                most appropriate UX method to validate user stories. By using this power-up, you will be able to improve
-                the overall user experience for your team's products and services. We're excited to see what insights
-                and improvements you'll uncover with the UX-Estimator!</p>
+                With the UX-Estimator, you can easily:</p>
+              <ul>
+                <li>Estimate the effort required to conduct experiments</li>
+                <li>Choose the most appropriate UX method to validate user stories</li>
+                <li>Improve the overall user experience for your team's products and services!</li>
+              </ul>
+              <p>We're excited to see what insights and improvements you'll uncover with the UX-Estimator!</p>
             </div>
             <button class="btn btn-primary nextBtn btn-lg pull-right" type="button">Next</button>
           </div>
