@@ -144,7 +144,7 @@
                                 data += "<input type='checkbox' name='task_" + item["id"] + "' value='" + item["id"] + "'class='tasks-list-cb'" + checked + ">";
                                 data += "<span class='tasks-list-mark'></span>";
                                 data += "<span class='tasks-list-desc'>" + item["name"] + "</span><br>";
-                                // data += "<span class='tasks-list-hint'>" + item["description"] + "</span>";
+                                data += "<span class='tasks-list-hint'>" + item["description"] + "</span>";
                                 data += '</label>'
                             });
                             $("#content").html(data);
