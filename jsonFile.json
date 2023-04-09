@@ -7,12 +7,12 @@
         {
           "id": "ux_1",
           "name": "Design review",
-          "description": "description1"
+          "description": "This method involves reviewing design concepts with stakeholders to get feedback and identify potential issues before development begins."
         },
         {
           "id": "ux_2",
           "name": "Low fidelity prototype",
-          "description": "description1"
+          "description": "This involves creating a basic mock-up of a product or feature with simple materials like paper or wireframe, to test various aspects of the product design and work out key user interactions."
         }
       ]
     },
@@ -23,12 +23,12 @@
         {
           "id": "ux_1",
           "name": "Design review",
-          "description": "description1"
+          "description": "This method involves reviewing design concepts with stakeholders to get feedback and identify potential issues before development begins."
         },
         {
           "id": "ux_2",
           "name": "Low fidelity prototype",
-          "description": "description1"
+          "description": "This involves creating a basic mock-up of a product or feature with simple materials like paper or wireframe, to test various aspects of the product design and work out key user interactions."
         }
       ]
     },
@@ -39,12 +39,12 @@
         {
           "id": "ux_1",
           "name": "Design review",
-          "description": "description1"
+          "description": "This method involves reviewing design concepts with stakeholders to get feedback and identify potential issues before development begins."
         },
         {
           "id": "ux_2",
           "name": "Low fidelity prototype",
-          "description": "description1"
+          "description": "This involves creating a basic mock-up of a product or feature with simple materials like paper or wireframe, to test various aspects of the product design and work out key user interactions."
         }
       ]
     },
@@ -55,12 +55,12 @@
         {
           "id": "ux_1",
           "name": "Design review",
-          "description": "description1"
+          "description": "This method involves reviewing design concepts with stakeholders to get feedback and identify potential issues before development begins."
         },
         {
           "id": "ux_2",
           "name": "Low fidelity prototype",
-          "description": "description1"
+          "description": "This involves creating a basic mock-up of a product or feature with simple materials like paper or wireframe, to test various aspects of the product design and work out key user interactions."
         }
       ]
     },
@@ -71,22 +71,22 @@
         {
           "id": "ux_1",
           "name": "Design review",
-          "description": "description1"
+          "description": "This method involves reviewing design concepts with stakeholders to get feedback and identify potential issues before development begins."
         },
         {
           "id": "ux_2",
           "name": "Low fidelity prototype",
-          "description": "description1"
+          "description": "This involves creating a basic mock-up of a product or feature with simple materials like paper or wireframe, to test various aspects of the product design and work out key user interactions."
         },
         {
           "id": "ux_3",
           "name": "Remote usability testing",
-          "description": "description1"
+          "description": "Conducting usability tests on a website or app with participants who are located remotely, usually via a video call or screen-sharing software."
         },
         {
           "id": "ux_4",
           "name": "User interview",
-          "description": "description1"
+          "description": "A one-on-one discussion with the user to gather detailed information about their experiences, needs, and pain points related to a product or service."
         }
       ]
     },
@@ -97,32 +97,32 @@
         {
           "id": "ux_1",
           "name": "Design review",
-          "description": "description1"
+          "description": "This method involves reviewing design concepts with stakeholders to get feedback and identify potential issues before development begins."
         },
         {
           "id": "ux_2",
           "name": "Low fidelity prototype",
-          "description": "description1"
+          "description": "This involves creating a basic mock-up of a product or feature with simple materials like paper or wireframe, to test various aspects of the product design and work out key user interactions."
         },
         {
           "id": "ux_3",
           "name": "Remote usability testing",
-          "description": "description1"
+          "description": "Conducting usability tests on a website or app with participants who are located remotely, usually via a video call or screen-sharing software."
         },
         {
           "id": "ux_4",
           "name": "User interview",
-          "description": "description1"
+          "description": "A one-on-one discussion with the user to gather detailed information about their experiences, needs, and pain points related to a product or service."
         },
         {
           "id": "ux_5",
           "name": "High fidelity prototype",
-          "description": "description1"
+          "description": "Refers to an advanced prototype that closely mimics the final product , often created with interactive features and more detailed graphics to test specific functionality."
         },
         {
           "id": "ux_6",
           "name": "Analytics review",
-          "description": "description1"
+          "description": "Refers to the analysis of data gathered from user interactions with a product or service to improve its performance or user experience."
         }
       ]
     },
@@ -133,37 +133,37 @@
         {
           "id": "ux_1",
           "name": "Design review",
-          "description": "description1"
+          "description": "This method involves reviewing design concepts with stakeholders to get feedback and identify potential issues before development begins."
         },
         {
           "id": "ux_2",
           "name": "User interview",
-          "description": "description1"
+          "description": "A one-on-one discussion with the user to gather detailed information about their experiences, needs, and pain points related to a product or service."
         },
         {
           "id": "ux_3",
           "name": "Competitive analysis",
-          "description": "description1"
+          "description": "Comparing your product or design with those of other industry players in order to identify competitive differentiation and gain insight as to what could be improved upon."
         },
         {
           "id": "ux_4",
           "name": "Low fidelity prototype",
-          "description": "description1"
+          "description": "This involves creating a basic mock-up of a product or feature with simple materials like paper or wireframe, to test various aspects of the product design and work out key user interactions."
         },
         {
           "id": "ux_5",
           "name": "Remote usability testing",
-          "description": "description1"
+          "description": "Conducting usability tests on a website or app with participants who are located remotely, usually via a video call or screen-sharing software."
         },
         {
           "id": "ux_6",
           "name": "High fidelity prototype",
-          "description": "description1"
+          "description": "Refers to an advanced prototype that closely mimics the final product , often created with interactive features and more detailed graphics to test specific functionality."
         },
         {
           "id": "ux_7",
           "name": "Analytics review",
-          "description": "description1"
+          "description": "Refers to the analysis of data gathered from user interactions with a product or service to improve its performance or user experience."
         }
       ]
     },
@@ -174,37 +174,37 @@
         {
           "id": "ux_1",
           "name": "Design review",
-          "description": "description1"
+          "description": "This method involves reviewing design concepts with stakeholders to get feedback and identify potential issues before development begins."
         },
         {
           "id": "ux_2",
           "name": "User interview",
-          "description": "description1"
+          "description": "A one-on-one discussion with the user to gather detailed information about their experiences, needs, and pain points related to a product or service."
         },
         {
           "id": "ux_3",
           "name": "Competitive analysis",
-          "description": "description1"
+          "description": "Comparing your product or design with those of other industry players in order to identify competitive differentiation and gain insight as to what could be improved upon."
         },
         {
           "id": "ux_4",
           "name": "Low fidelity prototype",
-          "description": "description1"
+          "description": "This involves creating a basic mock-up of a product or feature with simple materials like paper or wireframe, to test various aspects of the product design and work out key user interactions."
         },
         {
           "id": "ux_5",
           "name": "High fidelity prototype",
-          "description": "description1"
+          "description": "Refers to an advanced prototype that closely mimics the final product , often created with interactive features and more detailed graphics to test specific functionality."
         },
         {
           "id": "ux_6",
           "name": "In-person usability testing",
-          "description": "description1"
+          "description": "This method involves conducting user tests in person, often in a lab or other controlled environment. It's often used to gather detailed feedback about specific aspects of a design."
         },
         {
           "id": "ux_7",
           "name": "Analytics review",
-          "description": "description1"
+          "description": "Refers to the analysis of data gathered from user interactions with a product or service to improve its performance or user experience."
         }
       ]
     },
@@ -215,32 +215,32 @@
         {
           "id": "ux_1",
           "name": "Field study",
-          "description": "description1"
+          "description": "This involves observing real-world scenarios in which users interact with a product or service to gain insights into user behaviors, pain points, and other factors that could influence UX design decisions."
         },
         {
           "id": "ux_2",
           "name": "Design review",
-          "description": "description1"
+          "description": "This method involves reviewing design concepts with stakeholders to get feedback and identify potential issues before development begins."
         },
         {
           "id": "ux_3",
           "name": "Competitive analysis",
-          "description": "description1"
+          "description": "Comparing your product or design with those of other industry players in order to identify competitive differentiation and gain insight as to what could be improved upon."
         },
         {
           "id": "ux_4",
           "name": "High fidelity prototype",
-          "description": "description1"
+          "description": "Refers to an advanced prototype that closely mimics the final product , often created with interactive features and more detailed graphics to test specific functionality."
         },
         {
           "id": "ux_5",
           "name": "In-person usability testing",
-          "description": "description1"
+          "description": "This method involves conducting user tests in person, often in a lab or other controlled environment. It's often used to gather detailed feedback about specific aspects of a design."
         },
         {
           "id": "ux_6",
           "name": "Analytics review",
-          "description": "description1"
+          "description": "Refers to the analysis of data gathered from user interactions with a product or service to improve its performance or user experience."
         }
       ]
     },
@@ -251,37 +251,37 @@
         {
           "id": "ux_1",
           "name": "Field study",
-          "description": "description1"
+          "description": "This involves observing real-world scenarios in which users interact with a product or service to gain insights into user behaviors, pain points, and other factors that could influence UX design decisions."
         },
         {
           "id": "ux_2",
           "name": "Design review",
-          "description": "description1"
+          "description": "This method involves reviewing design concepts with stakeholders to get feedback and identify potential issues before development begins."
         },
         {
           "id": "ux_3",
           "name": "Low fidelity prototype",
-          "description": "description1"
+          "description": "This involves creating a basic mock-up of a product or feature with simple materials like paper or wireframe, to test various aspects of the product design and work out key user interactions."
         },
         {
           "id": "ux_4",
           "name": "High fidelity prototype",
-          "description": "description1"
+          "description": "Refers to an advanced prototype that closely mimics the final product , often created with interactive features and more detailed graphics to test specific functionality."
         },
         {
           "id": "ux_5",
           "name": "In-person usability testing",
-          "description": "description1"
+          "description": "This method involves conducting user tests in person, often in a lab or other controlled environment. It's often used to gather detailed feedback about specific aspects of a design."
         },
         {
           "id": "ux_6",
           "name": "Analytics review",
-          "description": "description1"
+          "description": "Refers to the analysis of data gathered from user interactions with a product or service to improve its performance or user experience."
         },
         {
           "id": "ux_7",
           "name": "Competitive analysis",
-          "description": "description1"
+          "description": "Comparing your product or design with those of other industry players in order to identify competitive differentiation and gain insight as to what could be improved upon."
         }
         
       ]
@@ -293,37 +293,37 @@
         {
           "id": "ux_1",
           "name": "Field study",
-          "description": "description1"
+          "description": "This involves observing real-world scenarios in which users interact with a product or service to gain insights into user behaviors, pain points, and other factors that could influence UX design decisions."
         },
         {
           "id": "ux_2",
           "name": "Design review",
-          "description": "description1"
+          "description": "This method involves reviewing design concepts with stakeholders to get feedback and identify potential issues before development begins."
         },
         {
           "id": "ux_3",
           "name": "Low fidelity prototype",
-          "description": "description1"
+          "description": "This involves creating a basic mock-up of a product or feature with simple materials like paper or wireframe, to test various aspects of the product design and work out key user interactions."
         },
         {
           "id": "ux_4",
           "name": "High fidelity prototype",
-          "description": "description1"
+          "description": "Refers to an advanced prototype that closely mimics the final product , often created with interactive features and more detailed graphics to test specific functionality."
         },
         {
           "id": "ux_5",
           "name": "In-person usability testing",
-          "description": "description1"
+          "description": "This method involves conducting user tests in person, often in a lab or other controlled environment. It's often used to gather detailed feedback about specific aspects of a design."
         },
         {
           "id": "ux_6",
           "name": "Analytics review",
-          "description": "description1"
+          "description": "Refers to the analysis of data gathered from user interactions with a product or service to improve its performance or user experience."
         },
         {
           "id": "ux_7",
           "name": "Competitive analysis",
-          "description": "description1"
+          "description": "Comparing your product or design with those of other industry players in order to identify competitive differentiation and gain insight as to what could be improved upon."
         }
         
       ]
