@@ -32,8 +32,8 @@
       'card-back-section': function (t, options) {
         return t.get('card', 'shared', 'uxScore')
           .then(function (uxScore) {
-            console.log(uxScore);
             if (uxScore) {
+              console.log(uxScore);
               return {
                 title: 'UX Methods',
                 icon: GRAY_ICON, // Must be a gray icon, colored icons not allowed.
@@ -49,6 +49,7 @@
           });
       },
       'card-badges': function (t, options) {
+        console.log("razan222!!+getBadges");
         return t.getAll('card', 'shared')
           .then(function (sharedData) {
             var { card: { shared: { uxScore, uxMethod, totalOfMethods } } } = sharedData;
