@@ -53,6 +53,7 @@
           .then(function (sharedData) {
             var { card: { shared: { uxScore, uxMethod, totalOfMethods } } } = sharedData;
             color = getColor(uxScore)
+            console.log("razan222!+getBadges");
             return getBadges(uxScore, color, uxMethod, totalOfMethods)
           });
       },
@@ -77,6 +78,7 @@
     }
 
     function getBadges(uxScore, color, uxMethod, totalOfMethods) {
+      console.log("razan222+getBadges");
       list = [{
         icon: 'https://i.postimg.cc/YSw4BYNQ/flash.png',
         text: uxScore || 'No Estimate!',
@@ -175,6 +177,8 @@
           }
         })
       }
+
+      console.log("WOOOOW, we put it back!!!");
       return list
     }
   </script>
